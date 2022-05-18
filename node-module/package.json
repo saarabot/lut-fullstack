@@ -1,6 +1,9 @@
 {
   "name": "node-module",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "description": "node module for fullstack course (LUT)",
   "main": "index.js",
   "scripts": {
