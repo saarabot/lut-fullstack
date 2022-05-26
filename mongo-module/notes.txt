@@ -1,0 +1,76 @@
+// insert data
+db.posts.insert({
+    title: 'Post One',
+    body: 'Body of post',
+    category: 'news',
+    likes: 4,
+    tags: ['news', 'events'],
+    user: {
+        name: 'Joe',
+        status: 'author',
+    },
+    date: Date()
+})
+
+db.posts.insertMany([
+ {
+    title: 'Post One',
+    body: 'Body of post',
+    category: 'news',
+    likes: 4,
+    tags: ['news', 'events'],
+    user: {
+        name: 'Joe',
+        status: 'author',
+    },
+    date: Date()
+},
+{
+    title: 'Post One',
+    body: 'Body of post',
+    category: 'news',
+    likes: 4,
+    tags: ['news', 'events'],
+    user: {
+        name: 'Joe',
+        status: 'author',
+    },
+    date: Date()
+}   
+])
+
+// query data
+
+db.posts.find()
+
+db.posts.find({ category: 'News'}).sort({ title: 1}).limit(2)
+
+db.posts.find({ category: 'News'}).count()
+
+db.posts.find().forEach(function(d) {print('Post: ' + d.title )})
+
+db.findOne({ category: 'news'})
+
+// update
+// replace everything
+db.posts.update({ title: 'Post One'}, { title: 'new title', body: 'new body', date: Date()}, {upsert: true})
+
+// only replace given fields
+db.posts.update({ title: 'Post One'}, {
+    $set:
+    { 
+        title: 'new title', body: 'new body', date: Date()
+    }
+})
+
+// increment
+db.posts.update({ title: 'Post One'}, { $inc: { likes: 2 }})
+
+// rename field
+db.posts.update({ title: 'Post One'}, { $rename: { likes: 'views' }})
+
+// delete
+db.posts.remove({ title: 'Post One'});
+
+
+
